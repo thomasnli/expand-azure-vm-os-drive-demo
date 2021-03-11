@@ -9,7 +9,7 @@ This is a demo to show the process of expanding the C partition of an Azure VM w
 ### 1. Hit the “Deploy to Azure” button to set up the demo environment automatically
 By hitting the "Deploy to Azure" button above, a VM provision process in your Azure portal will be initiated by the associated ARM template. On your Azure portal, please provide the "Resource group", "Virtual Machine name", "Admin Username" and "Admin Password" and hit the "Create" button for Azure to create the VM with 128G OS volume and associated resource. A VM extension is also included in the ARM template as part of the VM provision to create a PowerShell shortcut inside the VM for the OS volume expand.  
 
-three clicks to deploy teh demo enviorment:
+Three clicks to deploy teh demo enviorment:
 ![Deploy VM Step1](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/deploy_vm_step1.png)
 VM,Vnet and other associated resources are created automatically:
 ![Deploy VM Step2](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/deploy_vm_step2.png)
@@ -34,15 +34,19 @@ $disk.DiskSizeGB = 200
 Update-AzDisk -ResourceGroupName $rgName -Disk $disk -DiskName $disk.Name
 Start-AzVM -ResourceGroupName $rgName -Name $vmName
 ```
-
+Type your Recorce Group name, VM name and key in "Y" to start the process:
 ![Resize Disk Step1](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step1.png)
+What script does is shutdown the VM, expand the disk, and start the VM:
 ![Resize Disk Step2](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step2.png)
+Wait until the status of the VM booting to be updated:
 ![Resize Disk Step3](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step3.png)
 
 ### 3. Login to the VM to expand the volume 
 As part of the VM provision process, a PowerShell script to expand the OS volume was created on the desktop already. We just need to double click to run the script. A Disk Management console will be opened to show the change while a PowerShell console expands the C volume. 
 
+PowerShell shortcut was deployed automatically by ARM template during the VM provision, run it to start the volume provision 
 ![Expand Volumn Step1](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/expand_volume_step1.png)
+Check the updated OS size from Disk Management:
 ![Expand Volumn Step2](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/expand_volume_step2.png)
 
 ### 4. Copy and run below PowerShell command inside the Azure portal to remove the demo environment
