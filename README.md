@@ -4,7 +4,7 @@
 </a>
 
 ## Overview
-This is a demo to show the process of expanding the C partition of an Azure VM with the help of an ARM template to deploy the demo environment quickly. The process of expanding the VM's disk and expanding the OS volume of the VM is also automated by PowerShell. 
+This is a demo to show the process of expanding the C partition of an Azure VM with the help of an ARM template (azure_vm_deploy.json) to deploy the demo environment quickly. The process of expanding the VM's disk and expanding the OS volume of the VM is also automated by PowerShell. 
 
 ### 1. Hit the “Deploy to Azure” button to deploy the demo environment automatically
 By hitting the "Deploy to Azure" button above, a VM provision process in your Azure portal will be initiated by the associated ARM template. On your Azure portal, please provide the "Resource group", "Virtual Machine name", "Admin Username" and "Admin Password" and hit the "Create" button for Azure to create the VM with 128G OS volume and associated resource. A VM extension is also included in the ARM template as part of the VM provision to create a PowerShell shortcut inside the VM for the OS volume expand.  
