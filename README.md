@@ -34,7 +34,7 @@ $disk.DiskSizeGB = 200
 Update-AzDisk -ResourceGroupName $rgName -Disk $disk -DiskName $disk.Name
 Start-AzVM -ResourceGroupName $rgName -Name $vmName
 ```
-Type your Recorce Group name, VM name and key in "Y" to start the process:
+Type your Resource Group name, VM name and key in "Y" to start the process:
 ![Resize Disk Step1](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step1.png)
 What script does is shutdown the VM, expand the disk, and start the VM:
 ![Resize Disk Step2](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step2.png)
@@ -42,7 +42,7 @@ Wait until the status of the VM booting to be updated:
 ![Resize Disk Step3](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/resize_disk_step3.png)
 
 ### 3. Login to the VM to expand the volume 
-As part of the VM provision process, a PowerShell script to expand the OS volume was created on the desktop already. We just need to double click to run the script. A Disk Management console will be opened to show the change while a PowerShell console expands the C volume. 
+As part of the VM deployment process, a PowerShell script to expand the OS volume has been created on the desktop already. We just need to double click to run the script. A Disk Management console will be opened to show the change while a PowerShell console expands the C volume. 
 
 PowerShell shortcut was deployed automatically by ARM template during the VM provision, run it to start the volume provision 
 ![Expand Volumn Step1](https://github.com/thomasnli/expand-azure-vm-os-drive-demo/blob/main/images/expand_volume_step1.png)
@@ -55,4 +55,8 @@ $rgName = Read-Host -Prompt "Enter the name of the resource group to remove"
 Remove-AzureRmResourceGroup -Name $rgName
 ````
 
-**To sum up: generally speaking, this is a similar process applies to VM running in Hyper-V, VMware: expand the VM disk from hypervisor level and expand the OS volume inside the VM with the help of Disk Management console**
+**To sum up: generally speaking, this is a similar process applies to VM running in Hyper-V, VMware enviorment: 
+1.Shutdown the VM
+2.Expand the VM disk from hypervisor\cloud level
+3.Start the VM
+4.Expand the OS volume inside the VM with the Disk Management console**
